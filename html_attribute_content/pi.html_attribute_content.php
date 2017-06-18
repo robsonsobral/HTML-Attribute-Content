@@ -47,6 +47,12 @@ class Html_attribute_content {
 				$str = implode(' ', $words).$end_char;
 			}
 		}
+		elseif (($limit = ee()->TMPL->fetch_param('words_limit')) !== FALSE)
+		{
+			ee()->load->helper('text');
+			$end_char = (ee()->TMPL->fetch_param('end_char'));
+			$str = word_limiter($str, $limit, $end_char);
+		}
 
 		$this->return_data = $str;
 	}
